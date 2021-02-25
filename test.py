@@ -25,7 +25,7 @@ it creates a subfolder there named as timestamp and creates txt with your <ascii
 exec_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
 
 if re.match('^-[A-F]{,6}$',argv[1]):
-    run_set = set(argv[1:])
+    run_set = set(argv[1][1:])
     executable =  argv[2]
     comment = ''.join(argv[3:])
 else:
@@ -42,5 +42,5 @@ with open(os.path.join(D, 'comment.txt'), 'w') as f:
 for i in run_set: 
     outputf = os.path.join(D,i+'.out')
     inputf = os.path.join(IN_PATH, i+'.in')
-    run("bash -c './%s < %s > %s '" % (executable, inputf, outputf) )
+    run(['bash','-c' ,'./%s < %s > %s ' % (executable, inputf, outputf) ])
 
