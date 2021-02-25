@@ -2,7 +2,7 @@
 import re
 import datetime
 import os 
-from sys import argv
+from sys import argv, stderr
 from subprocess import run
 
 SAVE_PATH= 'outputs'
@@ -42,5 +42,6 @@ with open(os.path.join(D, 'comment.txt'), 'w') as f:
 for i in run_set: 
     outputf = os.path.join(D,i+'.out')
     inputf = os.path.join(IN_PATH, i+'.in')
+    print(i, inputf, outputf, file=stderr)
     run(['bash','-c' ,'./%s < %s > %s ' % (executable, inputf, outputf) ])
 
